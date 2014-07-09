@@ -1,0 +1,4 @@
+<?php
+
+$cli->setUsername('xxx');
+$cli->setPassword('xxx');
