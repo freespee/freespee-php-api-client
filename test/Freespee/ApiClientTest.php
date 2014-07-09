@@ -43,28 +43,41 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * Fetches a list of recorded calls for specified customer
-     */
-    function testGetAllCallRecordings()
+    private function getCustomerInfo()
     {
         $cli = $this->getApiClient();
 
-        $res = $cli->getRequest('/recordings?customer_id=430217'); // TODO get customer_id from api call also?
-        echo "Number of recordings: ".count($res->result['recordings'])."\n";
+        $res = $cli->getRequest('/customers');
+        return $res->result;
+    }
+
+    private function getAllCallRecordings()
+    {
+        // NOTE for this test, we automatically choose the first subcustomer
+        $info = $this->getCustomerInfo();
+        $this->assertGreaterThan(0, count($info['customers']));
+
+        $custId = $info['customers'][0]['customer_id'];
+
+        $cli = $this->getApiClient();
+
+        $res = $cli->getRequest('/recordings?customer_id='.$custId);
+        return $res->result['recordings'];
     }
 
     function testDownloadCallRecording()
     {
+        $allRecordings = $this->getAllCallRecordings();
+
         $cli = $this->getApiClient();
 
-        $res = $cli->getRequest('/recordings?recording_id=7afe76d9-900e-41f5-84cd-2aafab55f56b');
+        $res = $cli->getRequest('/recordings?recording_id='.$allRecordings[0]['recording_id']);
 
         $soundData = base64_decode($res->result['recordings'][0]['sounddata']);
 
         $tmpFileName = tempnam('/tmp', 'audio');
         file_put_contents($tmpFileName, $soundData);
-        echo "Wrote audio data to ".$tmpFileName."\n";
+        echo "Wrote audio data for ".$allRecordings[0]['recording_id']." to ".$tmpFileName."\n";
     }
 
 }
