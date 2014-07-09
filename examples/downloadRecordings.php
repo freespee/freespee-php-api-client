@@ -3,7 +3,7 @@
  * Example how to use the API to download all your call recordings
  */
 
-require '../bootstrap.php';
+require __DIR__.'/../bootstrap.php';
 
 $cli = new \Freespee\ApiClient();
 $cli->setBaseUrl('https://api.analytics.freespee.com/2.4.9');
