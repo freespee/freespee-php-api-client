@@ -7,7 +7,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $cli = new \Freespee\ApiClient();
         $cli->setBaseUrl('https://api.analytics.freespee.com/2.4.9');
 
-        $apiSettingsFile = realpath(__DIR__.'/..').'/settings.php';
+        $apiSettingsFile = realpath(__DIR__.'/../../settings').'/settings.php';
         require $apiSettingsFile;
 
         return $cli;
@@ -67,6 +67,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 
     function testDownloadCallRecording()
     {
+        // NOTE for this test, we download the first call recording found
         $allRecordings = $this->getAllCallRecordings();
 
         $cli = $this->getApiClient();
