@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 /**
  * Example how to use the API to download all your call recordings
