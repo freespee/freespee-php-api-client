@@ -5,7 +5,6 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     private function getApiClient()
     {
         $cli = new \Freespee\ApiClient();
-        $cli->setBaseUrl('https://api.analytics.freespee.com/2.4.9');
 
         $apiSettingsFile = realpath(__DIR__.'/../../settings').'/settings.php';
         require $apiSettingsFile;
