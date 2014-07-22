@@ -2,7 +2,7 @@
 
 class ApiClientTest extends \PHPUnit_Framework_TestCase
 {
-    private function getApiClient()
+    static function testGetApiClient()
     {
         $cli = new \Freespee\ApiClient();
 
@@ -12,11 +12,13 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         return $cli;
     }
 
-    function testPingUnauthorized()
+    /**
+     * @depends testGetApiClient
+     */
+    function testPingUnauthorized(\Freespee\ApiClient $cli)
     {
-        $cli = $this->getApiClient();
+        $orgUsername = $cli->getUsername();
         $cli->setUsername('');
-        $cli->setPassword('');
 
         $expected = new \Freespee\ApiResponse();
         $expected->httpCode = 401; // Unauthorized
@@ -26,12 +28,15 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             $expected,
             $cli->getRequest('/miscellaneous/ping')
         );
+
+        $cli->setUsername($orgUsername);
     }
 
-    function testPing()
+    /**
+     * @depends testGetApiClient
+     */
+    function testPing(\Freespee\ApiClient $cli)
     {
-        $cli = $this->getApiClient();
-
         $expected = new \Freespee\ApiResponse();
         $expected->httpCode = 200; // OK
         $expected->result = array('ping' => 'ok');
@@ -42,34 +47,37 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    private function getCustomerInfo()
+    /**
+     * @depends testGetApiClient
+     */
+    private function getCustomerInfo(\Freespee\ApiClient $cli)
     {
-        $cli = $this->getApiClient();
-
         $res = $cli->getRequest('/customers');
         return $res->result;
     }
 
-    private function getAllCallRecordings()
+    /**
+     * @depends testGetApiClient
+     */
+    private function getAllCallRecordings(\Freespee\ApiClient $cli)
     {
         // NOTE for this test, we automatically choose the first subcustomer
-        $info = $this->getCustomerInfo();
+        $info = $this->getCustomerInfo($cli);
         $this->assertGreaterThan(0, count($info['customers']));
 
         $custId = $info['customers'][0]['customer_id'];
-
-        $cli = $this->getApiClient();
 
         $res = $cli->getRequest('/recordings?customer_id='.$custId);
         return $res->result['recordings'];
     }
 
-    function testDownloadCallRecording()
+    /**
+     * @depends testGetApiClient
+     */
+    function testDownloadCallRecording(\Freespee\ApiClient $cli)
     {
         // NOTE for this test, we download the first call recording found
-        $allRecordings = $this->getAllCallRecordings();
-
-        $cli = $this->getApiClient();
+        $allRecordings = $this->getAllCallRecordings($cli);
 
         $res = $cli->getRequest('/recordings?recording_id='.$allRecordings[0]['recording_id']);
 

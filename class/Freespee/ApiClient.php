@@ -22,6 +22,21 @@ class ApiClient
         $this->baseUrl = $s;
     }
 
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function getBaseUrl()
+    {
+        return $this->baseUrl;
+    }
+
     public function getRequest($resource)
     {
         if (!$this->baseUrl) {
