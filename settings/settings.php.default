@@ -1,5 +1,5 @@
 <?php
 
-$cli->setBaseUrl('https://api.analytics.freespee.com/2.4.9');
-$cli->setUsername('xxx');
-$cli->setPassword('xxx');
+$freespee->setBaseUrl('https://api.analytics.freespee.com/2.4.9');
+$freespee->setUsername('xxx');
+$freespee->setPassword('xxx');

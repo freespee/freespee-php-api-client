@@ -4,12 +4,12 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 {
     static function testGetApiClient()
     {
-        $cli = new \Freespee\ApiClient();
+        $freespee = new \Freespee\ApiClient();
 
         $apiSettingsFile = realpath(__DIR__.'/../../settings').'/settings.php';
         require $apiSettingsFile;
 
-        return $cli;
+        return $freespee;
     }
 
     /**
