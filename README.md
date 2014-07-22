@@ -1,13 +1,13 @@
-## About
+# About
 
-A class for the Freespee API
+A client class for the Freespee API
 
-# API Documentation
+## API Documentation
 
 https://developers.freespee.com/api
 
 
-# Getting Started
+## Getting Started
 
 configure account:
 ```
