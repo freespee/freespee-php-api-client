@@ -9,7 +9,13 @@ https://developers.freespee.com/api
 
 ## Getting Started
 
-configure account:
+
+```
+git clone https://github.com/freespee/fs_api_client.git
+cd fs_api_client
+```
+
+configure api account with information provided by Freespee:
 ```
 cd settings
 cp settings.php.default settings.php
