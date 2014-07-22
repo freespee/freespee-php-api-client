@@ -28,3 +28,8 @@ verify it's working:
 cd <source root>
 phpunit
 ```
+
+## Using composer
+
+A composer.json is also provided.
+For more information, see https://getcomposer.org/
