@@ -1,7 +1,6 @@
 {
     "name": "freespee/fs_api_client",
     "description": "A client class for the Freespee API",
-    "version": "1.0.0",
     "homepage": "https://github.com/freespee/fs_api_client",
     "license": "BSD",
     "require": {
