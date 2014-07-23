@@ -11,7 +11,7 @@ https://developers.freespee.com/api
 
 
 ```
-git clone https://github.com/freespee/fs_api_client.git
+git clone https://github.com/freespee/freespee-php-api-client.git
 cd fs_api_client
 ```
 
