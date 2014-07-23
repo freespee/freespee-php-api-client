@@ -12,7 +12,7 @@ https://developers.freespee.com/api
 
 ```
 git clone https://github.com/freespee/freespee-php-api-client.git
-cd fs_api_client
+cd freespee-php-api-client
 ```
 
 configure api account with information provided by Freespee:
