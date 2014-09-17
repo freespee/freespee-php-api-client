@@ -1,7 +1,7 @@
 <?php
-namespace Freespee;
+namespace Freespee\ApiClient;
 
-class ApiResponse
+class Response
 {
     var $httpCode;
     var $result;
