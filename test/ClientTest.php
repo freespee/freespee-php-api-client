@@ -1,6 +1,4 @@
 <?php
-//require __DIR__.'/../src/Client.php';
-//require __DIR__.'/../src/Response.php';
 
 class ApiClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -94,5 +92,4 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         file_put_contents($tmpFileName, $soundData);
         echo "Wrote audio data for ".$allRecordings[0]['recording_id']." to ".$tmpFileName."\n";
     }
-
 }
