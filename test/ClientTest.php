@@ -1,6 +1,6 @@
 <?php
 
-class ApiClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends \PHPUnit_Framework_TestCase
 {
     public static function testGetApiClient()
     {
