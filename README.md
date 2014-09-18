@@ -1,14 +1,28 @@
 # About
 
-A client class for the Freespee API
+A PHP client class for the Freespee API
 
 ## API Documentation
 
 https://developers.freespee.com/api
 
 
-## Getting Started
 
+## Recommended: using composer
+
+In composer.json, add
+
+```
+"freespee/freespee-php-api-client": "1.0.0"
+```
+
+to the require section
+
+For more information, see https://getcomposer.org/
+
+
+
+## Using a git clone
 
 ```
 git clone https://github.com/freespee/freespee-php-api-client.git
@@ -28,8 +42,3 @@ verify it's working:
 cd <source root>
 phpunit
 ```
-
-## Using composer
-
-A composer.json is also provided.
-For more information, see https://getcomposer.org/
