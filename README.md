@@ -18,7 +18,7 @@ In composer.json, add
 
 to the require section
 
-For more information, see https://getcomposer.org/
+For more information, see https://packagist.org/packages/freespee/freespee-php-api-client
 
 
 
