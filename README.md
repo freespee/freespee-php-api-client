@@ -13,7 +13,7 @@ https://developers.freespee.com/api
 In composer.json, add
 
 ```
-"freespee/freespee-php-api-client": "1.0.0"
+"freespee/freespee-php-api-client": "1.0.1"
 ```
 
 to the require section
