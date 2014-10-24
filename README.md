@@ -4,8 +4,7 @@ A PHP client class for the Freespee API
 
 ## API Documentation
 
-https://developers.freespee.com/api
-
+http://support.freespee.com/hc/en-us/categories/preview?developers
 
 
 ## Recommended: using composer
