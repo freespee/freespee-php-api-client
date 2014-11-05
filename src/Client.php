@@ -37,7 +37,7 @@ class Client
         return $this->baseUrl;
     }
 
-    private function createCurlObject($method, $resource)
+    private function createCurlObject($method, $resource, $data = null)
     {
         if (!$this->baseUrl) {
             throw new Exception('requires baseUrl');
@@ -83,21 +83,21 @@ class Client
     public function postRequest($resource, $data)
     {
         return $this->buildResponse(
-            $this->createCurlObject('POST', $resource)
+            $this->createCurlObject('POST', $resource, $data)
         );
     }
 
     public function putRequest($resource, $data)
     {
         return $this->buildResponse(
-            $this->createCurlObject('PUT', $resource)
+            $this->createCurlObject('PUT', $resource, $data)
         );
     }
 
     public function deleteRequest($resource, $data)
     {
         return $this->buildResponse(
-            $this->createCurlObject('DELETE', $resource)
+            $this->createCurlObject('DELETE', $resource, $data)
         );
     }
 }
