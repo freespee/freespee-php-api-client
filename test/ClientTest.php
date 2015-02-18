@@ -71,6 +71,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // NOTE for this test, we automatically choose the first subcustomer
         $info = $this->getCustomerInfo($cli);
+        if (!empty($info['errors'])) {
+            $this->fail('Error: '.serialize($info['errors'][0]));
+        }
         $this->assertGreaterThan(0, count($info['customers']));
 
         $custId = $info['customers'][0]['customer_id'];
