@@ -1,5 +1,7 @@
 <?php
 
+use Freespee\ApiClient\Client;
+
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
     public static function testGetApiClient()
@@ -14,8 +16,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends testGetApiClient
+     * @param Client $cli
      */
-    public function testPingUnauthorized(\Freespee\ApiClient\Client $cli)
+    public function testPingUnauthorized(Client $cli)
     {
         $orgUsername = $cli->getUsername();
         $cli->setUsername('');
@@ -34,12 +37,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends testGetApiClient
+     * @param Client $cli
      */
-    public function testPing(\Freespee\ApiClient\Client $cli)
+    public function testPing(Client $cli)
     {
         $expected = new \Freespee\ApiClient\Response();
         $expected->httpCode = 200; // OK
-        $expected->result = array('ping' => 'ok');
+        $expected->result = ['ping' => 'ok'];
 
         $this->assertEquals(
             $expected,
@@ -49,8 +53,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends testGetApiClient
+     * @param Client $cli
+     * @return mixed
      */
-    private function getCustomerInfo(\Freespee\ApiClient\Client $cli)
+    private function getCustomerInfo(Client $cli)
     {
         $res = $cli->getRequest('/customers');
         return $res->result;
@@ -58,8 +64,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends testGetApiClient
+     * @param Client $cli
+     * @return mixed
      */
-    private function getAllCallRecordings(\Freespee\ApiClient\Client $cli)
+    private function getAllCallRecordings(Client $cli)
     {
         // NOTE for this test, we automatically choose the first subcustomer
         $info = $this->getCustomerInfo($cli);
@@ -73,8 +81,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends testGetApiClient
+     * @param Client $cli
      */
-    public function testDownloadCallRecording(\Freespee\ApiClient\Client $cli)
+    public function testDownloadCallRecording(Client $cli)
     {
         // NOTE for this test, we download the first call recording found
         $allRecordings = $this->getAllCallRecordings($cli);

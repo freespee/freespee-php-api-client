@@ -1,5 +1,4 @@
-<?php
-namespace Freespee\ApiClient;
+<?php namespace Freespee\ApiClient;
 
 class Response
 {

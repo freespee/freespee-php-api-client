@@ -1,5 +1,4 @@
-<?php
-namespace Freespee\ApiClient;
+<?php namespace Freespee\ApiClient;
 
 class Client
 {
@@ -7,19 +6,19 @@ class Client
     protected $password;
     protected $baseUrl;
 
-    public function setUsername($s)
+    public function setUsername($username)
     {
-        $this->username = $s;
+        $this->username = $username;
     }
 
-    public function setPassword($s)
+    public function setPassword($password)
     {
-        $this->password = $s;
+        $this->password = $password;
     }
 
-    public function setBaseUrl($s)
+    public function setBaseUrl($baseUrl)
     {
-        $this->baseUrl = $s;
+        $this->baseUrl = $baseUrl;
     }
 
     public function getUsername()
@@ -39,10 +38,6 @@ class Client
 
     private function createCurlObject($method, $resource, $data = null)
     {
-        if (!$this->baseUrl) {
-            throw new Exception('requires baseUrl');
-        }
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->baseUrl.$resource);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -73,6 +68,10 @@ class Client
         return $res;
     }
 
+    /**
+     * @param $resource
+     * @return Response
+     */
     public function getRequest($resource)
     {
         return $this->buildResponse(
@@ -80,6 +79,11 @@ class Client
         );
     }
 
+    /**
+     * @param $resource
+     * @param $data
+     * @return Response
+     */
     public function postRequest($resource, $data)
     {
         return $this->buildResponse(
@@ -87,6 +91,11 @@ class Client
         );
     }
 
+    /**
+     * @param $resource
+     * @param $data
+     * @return Response
+     */
     public function putRequest($resource, $data)
     {
         return $this->buildResponse(
@@ -94,6 +103,11 @@ class Client
         );
     }
 
+    /**
+     * @param $resource
+     * @param $data
+     * @return Response
+     */
     public function deleteRequest($resource, $data)
     {
         return $this->buildResponse(
