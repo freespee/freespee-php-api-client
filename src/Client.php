@@ -6,6 +6,9 @@ class Client
     protected $password;
     protected $baseUrl;
 
+    /**
+     * @param array $config
+     */
     public function __construct(array $config = [])
     {
         if (array_key_exists('base_url', $config)) {
@@ -49,7 +52,13 @@ class Client
         return $this->baseUrl;
     }
 
-    private function createCurlObject($method, $resource, $data = null)
+    /**
+     * @param string $method GET, PUT, POST, DELETE
+     * @param string $resource
+     * @param array $data
+     * @return resource curl resource
+     */
+    private function createCurlObject($method, $resource, $data = [])
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->baseUrl.$resource);
@@ -68,6 +77,10 @@ class Client
         return $ch;
     }
 
+    /**
+     * @param resource $ch curl resource
+     * @return Response
+     */
     private function buildResponse($ch)
     {
         $output = curl_exec($ch);
@@ -82,7 +95,7 @@ class Client
     }
 
     /**
-     * @param $resource
+     * @param string $resource
      * @return Response
      */
     public function getRequest($resource)
@@ -93,11 +106,11 @@ class Client
     }
 
     /**
-     * @param $resource
-     * @param $data
+     * @param string $resource
+     * @param array $data
      * @return Response
      */
-    public function postRequest($resource, $data)
+    public function postRequest($resource, array $data)
     {
         return $this->buildResponse(
             $this->createCurlObject('POST', $resource, $data)
@@ -105,11 +118,11 @@ class Client
     }
 
     /**
-     * @param $resource
-     * @param $data
+     * @param string $resource
+     * @param array $data
      * @return Response
      */
-    public function putRequest($resource, $data)
+    public function putRequest($resource, array $data)
     {
         return $this->buildResponse(
             $this->createCurlObject('PUT', $resource, $data)
@@ -117,11 +130,11 @@ class Client
     }
 
     /**
-     * @param $resource
-     * @param $data
+     * @param string $resource
+     * @param array $data
      * @return Response
      */
-    public function deleteRequest($resource, $data)
+    public function deleteRequest($resource, array $data)
     {
         return $this->buildResponse(
             $this->createCurlObject('DELETE', $resource, $data)
