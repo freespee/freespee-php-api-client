@@ -12,7 +12,7 @@ http://support.freespee.com/hc/en-us/categories/preview?developers
 In composer.json, add
 
 ```
-"freespee/freespee-php-api-client": "1.0.1"
+"freespee/freespee-php-api-client": "1.1.0"
 ```
 
 to the require section

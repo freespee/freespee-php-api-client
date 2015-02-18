@@ -1,5 +1,7 @@
 <?php
 
-$freespee->setBaseUrl('https://api.analytics.freespee.com/2.4.9');
-$freespee->setUsername('xxx');
-$freespee->setPassword('xxx');
+return array(
+    'base_url' => 'https://api.analytics.freespee.com/2.4.9',
+    'username' => 'xxx',
+    'password' => 'xxx',
+);

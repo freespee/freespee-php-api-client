@@ -6,6 +6,19 @@ class Client
     protected $password;
     protected $baseUrl;
 
+    public function __construct(array $config)
+    {
+        if (array_key_exists('base_url', $config)) {
+            $this->setBaseUrl($config['base_url']);
+        }
+        if (array_key_exists('username', $config)) {
+            $this->setUsername($config['username']);
+        }
+        if (array_key_exists('password', $config)) {
+            $this->setPassword($config['password']);
+        }
+    }
+
     public function setUsername($username)
     {
         $this->username = $username;
