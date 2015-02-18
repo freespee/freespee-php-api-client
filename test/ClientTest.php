@@ -1,15 +1,15 @@
 <?php
 
 use Freespee\ApiClient\Client;
+use Freespee\ApiClient\Response;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
     public static function testGetApiClient()
     {
         $config = include __DIR__.'/../settings/settings.php';
-        $freespee = new \Freespee\ApiClient\Client($config);
 
-        return $freespee;
+        return new Client($config);
     }
 
     /**
@@ -21,9 +21,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $orgUsername = $cli->getUsername();
         $cli->setUsername('');
 
-        $expected = new \Freespee\ApiClient\Response();
-        $expected->httpCode = 401; // Unauthorized
-        $expected->result = null;
+        $expected = new Response(
+            Response::UNAUTHORIZED
+        );
 
         $this->assertEquals(
             $expected,
@@ -39,9 +39,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testPing(Client $cli)
     {
-        $expected = new \Freespee\ApiClient\Response();
-        $expected->httpCode = 200; // OK
-        $expected->result = ['ping' => 'ok'];
+        $expected = new Response(
+            Response::OK,
+            ['ping' => 'ok']
+        );
 
         $this->assertEquals(
             $expected,
