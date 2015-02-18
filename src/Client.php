@@ -6,7 +6,7 @@ class Client
     protected $password;
     protected $baseUrl;
 
-    public function __construct(array $config)
+    public function __construct(array $config = [])
     {
         if (array_key_exists('base_url', $config)) {
             $this->setBaseUrl($config['base_url']);
