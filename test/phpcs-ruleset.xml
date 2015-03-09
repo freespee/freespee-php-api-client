@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="core3Custom">
+<ruleset name="custom">
 	<description>custom code convention rules</description>
 
 	<arg name="report" value="full"/>
