@@ -4,13 +4,12 @@
  * Example how to use the API to download all your call recordings
  */
 
-require __DIR__.'/../bootstrap.php';
+require __DIR__.'/../vendor/autoload.php';
 
-$cli = new \Freespee\ApiClient();
-$cli->setBaseUrl('https://api.analytics.freespee.com/2.4.9');
+$settings = require realpath(__DIR__.'/../settings').'/settings.php';
 
-$apiSettingsFile = realpath(__DIR__.'/../settings').'/settings.php';
-require $apiSettingsFile;
+$cli = new \Freespee\ApiClient\Client($settings);
+
 
 
 // get all subcustomers
