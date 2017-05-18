@@ -5,6 +5,7 @@ class Client
     protected $username;
     protected $password;
     protected $baseUrl;
+    protected $allowUnsecureSsl = false;
 
     /**
      * @param array $config
@@ -19,6 +20,9 @@ class Client
         }
         if (array_key_exists('password', $config)) {
             $this->setPassword($config['password']);
+        }
+        if (array_key_exists('allow_unsecure_ssl', $config)) {
+            $this->allowUnsecureSsl = $config['allow_unsecure_ssl'];
         }
     }
 
@@ -63,6 +67,11 @@ class Client
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->baseUrl.$resource);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        if ($this->allowUnsecureSsl === true) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
 
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
         if ($this->username && $this->password) {
